@@ -15,17 +15,34 @@
 (function () {
   "use strict";
 
-  const list_css = `<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dethMastery/amq-scripts@main/list_update/css/button.css">`;
-  document.head.appendChild();
+  // const list_css = `<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dethMastery/amq-scripts@main/list_update/css/button.css">`;
+  // document.head.appendChild();
 
-  const list_button_menu = `<div onClick="list_update_function()" id="list_menu_button" class="button floatingContainer mainMenuButton">
-    Update List
+  var list_button_menu = `<div onClick="list_update_function()" id="list_menu_button" class="button floatingContainer mainMenuButton">
+    <h1>Update List</h1>
 </div>`;
-  document.querySelector("#mainMenu").append(list_button_menu);
+  document.querySelector("#mainMenu").innerHTML += list_button_menu;
 
-  const list_update_function = () => {
-    console.log(document.querySelector("#kitsuUserNameInput").value);
-    console.log(document.querySelector("#malUserNameInput").value);
-    console.log(document.querySelector("#aniListUserNameInput").value);
-  };
+  document.querySelector("#list_menu_button").addEventListener("click", (e) => {
+    e.preventDefault();
+
+    // Kitzu
+    if (
+      String(document.querySelector("#kitsuUserNameInput").value).length > 0
+    ) {
+      options.updateKitsu();
+    }
+
+    // AniList
+    if (
+      String(document.querySelector("#aniListUserNameInput").value).length > 0
+    ) {
+      options.updateAniList();
+    }
+
+    // MAL
+    if (String(document.querySelector("#malUserNameInput").value).length > 0) {
+      options.updateMal();
+    }
+  });
 })();
